@@ -327,26 +327,6 @@ SELECT * FROM RFM;
 | Classic Gift Ideas, Inc | 2 | 2 | 2 | 6 | PROMISING_CUSTOMERS |
 | Canadian Gift Exchange Network | 2 | 2 | 2 | 6 | PROMISING_CUSTOMERS |
 | Vida Sport, Ltd | 1 | 1 | 4 | 6 | PROMISING_CUSTOMERS |
-| Iberia Gift Imports, Corp. | 2 | 2 | 1 | 5 | HIBERNATING |
-| Clover Collections, Co. | 2 | 2 | 1 | 5 | HIBERNATING |
-| giftsbymail.co.uk | 2 | 1 | 2 | 5 | HIBERNATING |
-| Collectable Mini Designs Co. | 1 | 1 | 3 | 5 | HIBERNATING |
-| Amica Models & Co. | 1 | 1 | 3 | 5 | HIBERNATING |
-| Microscale Inc. | 2 | 1 | 1 | 4 | HIBERNATING |
-| Osaka Souveniers Co. | 1 | 1 | 2 | 4 | HIBERNATING |
-| Daedalus Designs Imports | 1 | 1 | 2 | 4 | HIBERNATING |
-| Diecast Collectables | 1 | 1 | 2 | 4 | HIBERNATING |
-| Royal Canadian Collectables, Ltd. | 1 | 1 | 2 | 4 | HIBERNATING |
-| Norway Gifts By Mail, Co. | 1 | 1 | 2 | 4 | HIBERNATING |
-| Super Scale Inc. | 1 | 1 | 2 | 4 | HIBERNATING |
-| Bavarian Collectables Imports, Co. | 1 | 1 | 1 | 3 | LOST |
-| Double Decker Gift Stores, Ltd | 1 | 1 | 1 | 3 | LOST |
-| Cambridge Collectables Co. | 1 | 1 | 1 | 3 | LOST |
-| West Coast Collectables Co. | 1 | 1 | 1 | 3 | LOST |
-| Men 'R' US Retailers, Ltd. | 1 | 1 | 1 | 3 | LOST |
-| CAF Imports | 1 | 1 | 1 | 3 | LOST |
-| Signal Collectibles Ltd. | 1 | 1 | 1 | 3 | LOST |
-| Online Mini Collectables | 1 | 1 | 1 | 3 | LOST |
 
 ## 📁 Repository Structure
 
