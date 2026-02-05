@@ -1,0 +1,93 @@
+CUSTOMERNAME,RECENCY,FREQUENCY,MONETARY,CUSTOMER_SEGMENT
+"Boards & Toys Co.",4,2,1,PROMISING_CUSTOMERS
+"Atelier graphique",3,3,1,PROMISING_CUSTOMERS
+"Auto-Moto Classics Inc.",3,3,1,PROMISING_CUSTOMERS
+"Microscale Inc.",2,1,1,HIBERNATING
+"Royale Belge",4,5,1,POTENTIAL_LOYALISTS
+"Bavarian Collectables Imports, Co.",1,1,1,LOST
+"Double Decker Gift Stores, Ltd",1,1,1,LOST
+"Cambridge Collectables Co.",1,1,1,LOST
+"West Coast Collectables Co.",1,1,1,LOST
+"Men 'R' US Retailers, Ltd.",1,1,1,LOST
+"CAF Imports",1,1,1,LOST
+"Signal Collectibles Ltd.",1,1,1,LOST
+"Mini Auto Werke",4,4,1,POTENTIAL_LOYALISTS
+"Iberia Gift Imports, Corp.",2,2,1,HIBERNATING
+"Online Mini Collectables",1,1,1,LOST
+"Gift Ideas Corp.",3,3,1,PROMISING_CUSTOMERS
+"Clover Collections, Co.",2,2,1,HIBERNATING
+"Australian Gift Network, Co",4,4,1,POTENTIAL_LOYALISTS
+"Australian Collectables, Ltd",5,2,1,PROMISING_CUSTOMERS
+"Auto Assoc. & Cie.",2,2,2,PROMISING_CUSTOMERS
+"Classic Gift Ideas, Inc",2,2,2,PROMISING_CUSTOMERS
+"Osaka Souveniers Co.",1,1,2,HIBERNATING
+"Daedalus Designs Imports",1,1,2,HIBERNATING
+"Alpha Cognac",4,4,2,POTENTIAL_LOYALISTS
+"Diecast Collectables",1,1,2,HIBERNATING
+"Quebec Home Shopping Network",5,4,2,POTENTIAL_LOYALISTS
+"Mini Wheels Co.",3,3,2,PROMISING_CUSTOMERS
+"Royal Canadian Collectables, Ltd.",1,1,2,HIBERNATING
+"Marseille Mini Autos",3,3,2,PROMISING_CUSTOMERS
+"Petit Auto",5,2,2,POTENTIAL_LOYALISTS
+"Canadian Gift Exchange Network",2,2,2,PROMISING_CUSTOMERS
+"Volvo Model Replicas, Co",3,5,2,POTENTIAL_LOYALISTS
+"Classic Legends Inc.",3,3,2,PROMISING_CUSTOMERS
+giftsbymail.co.uk,2,1,2,HIBERNATING
+"Enaco Distributors",3,3,2,PROMISING_CUSTOMERS
+"Lyon Souveniers",4,4,2,POTENTIAL_LOYALISTS
+"Norway Gifts By Mail, Co.",1,1,2,HIBERNATING
+"Super Scale Inc.",1,1,2,HIBERNATING
+"Mini Caravy",5,4,3,LOYAL_CUSTOMERS
+"Collectables For Less Inc.",4,3,3,POTENTIAL_LOYALISTS
+"Signal Gift Stores",3,3,3,POTENTIAL_LOYALISTS
+Gifts4AllAges.com,5,4,3,LOYAL_CUSTOMERS
+"Tekni Collectables Inc.",4,4,3,POTENTIAL_LOYALISTS
+"Motor Mint Distributors Inc.",3,3,3,POTENTIAL_LOYALISTS
+"Blauer See Auto, Co.",2,4,3,POTENTIAL_LOYALISTS
+"Mini Classics",2,2,3,PROMISING_CUSTOMERS
+"Collectable Mini Designs Co.",1,1,3,HIBERNATING
+"Vitachrome Inc.",2,2,3,PROMISING_CUSTOMERS
+"Stylish Desk Decors, Co.",3,3,3,POTENTIAL_LOYALISTS
+"Auto Canal Petit",4,4,3,POTENTIAL_LOYALISTS
+"Cruz & Sons Co.",2,3,3,PROMISING_CUSTOMERS
+"Amica Models & Co.",1,1,3,HIBERNATING
+"La Corne D'abondance, Co.",3,3,3,POTENTIAL_LOYALISTS
+FunGiftIdeas.com,4,4,3,POTENTIAL_LOYALISTS
+"Toms Spezialitten, Ltd",2,2,3,PROMISING_CUSTOMERS
+"Heintze Collectables",2,2,3,PROMISING_CUSTOMERS
+"Gift Depot Inc.",5,4,4,LOYAL_CUSTOMERS
+"Marta's Replicas Co.",2,2,4,PROMISING_CUSTOMERS
+"Oulu Toy Supplies, Inc.",4,3,4,POTENTIAL_LOYALISTS
+Toys4GrownUps.com,4,3,4,POTENTIAL_LOYALISTS
+"Mini Creations Ltd.",3,3,4,POTENTIAL_LOYALISTS
+"Toys of Finland, Co.",4,4,4,LOYAL_CUSTOMERS
+"Herkku Gifts",1,2,4,PROMISING_CUSTOMERS
+"Suominen Souveniers",3,3,4,POTENTIAL_LOYALISTS
+"Handji Gifts& Co",5,5,4,LOYAL_CUSTOMERS
+"Baane Mini Imports",2,4,4,POTENTIAL_LOYALISTS
+"Vida Sport, Ltd",1,1,4,PROMISING_CUSTOMERS
+"UK Collectables, Ltd.",5,4,4,LOYAL_CUSTOMERS
+"Tokyo Collectables, Ltd",5,5,4,LOYAL_CUSTOMERS
+"Corrida Auto Replicas, Ltd",2,2,4,PROMISING_CUSTOMERS
+"Technics Stores Inc.",3,4,4,POTENTIAL_LOYALISTS
+"Diecast Classics Inc.",5,5,4,LOYAL_CUSTOMERS
+"Online Diecast Creations Co.",2,2,4,PROMISING_CUSTOMERS
+"Scandinavian Gift Ideas",4,4,4,LOYAL_CUSTOMERS
+"Reims Collectables",4,5,5,LOYAL_CUSTOMERS
+"Rovelli Gifts",2,2,5,POTENTIAL_LOYALISTS
+"L'ordine Souveniers",5,2,5,LOYAL_CUSTOMERS
+"Saveley & Henriot, Co.",1,2,5,PROMISING_CUSTOMERS
+"Danish Wholesale Imports",5,5,5,CHAMPIONS
+"Salzburg Collectables",5,5,5,CHAMPIONS
+"Corporate Gift Ideas Co.",4,5,5,LOYAL_CUSTOMERS
+"Souveniers And Things Co.",5,5,5,CHAMPIONS
+"Anna's Decorations, Ltd",4,5,5,LOYAL_CUSTOMERS
+"AV Stores, Co.",3,3,5,POTENTIAL_LOYALISTS
+"The Sharp Gifts Warehouse",5,5,5,CHAMPIONS
+"Land of Toys Inc.",2,4,5,POTENTIAL_LOYALISTS
+"Dragon Souveniers, Ltd.",4,5,5,LOYAL_CUSTOMERS
+"La Rochelle Gifts",5,5,5,CHAMPIONS
+"Muscle Machine Inc",3,5,5,LOYAL_CUSTOMERS
+"Australian Collectors, Co.",3,5,5,LOYAL_CUSTOMERS
+"Mini Gifts Distributors Ltd.",5,5,5,CHAMPIONS
+"Euro Shopping Channel",5,5,5,CHAMPIONS
