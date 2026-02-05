@@ -76,8 +76,9 @@ Based on RFM scoring, customers are classified into 6 segments:
 
 ## 💻 SQL Implementation
 
-### 1. Business Metrics Query
+### 1. Finding Number of Customers, Orders, Quantity and Sales
 
+**Query:**
 ```sql
 SELECT 
     COUNT(DISTINCT CUSTOMERNAME) AS NO_OF_CUSTOMERS,
@@ -87,7 +88,115 @@ SELECT
 FROM SAMPLE_SALES_DATA;
 ```
 
-### 2. RFM Segmentation (Complete View)
+**Output:**
+| NO_OF_CUSTOMERS | NO_OF_ORDERS | ORDER_QTY | TOTAL_SALES |
+|-----------------|--------------|-----------|-------------|
+| 92 | 307 | 99067 | 10032629 |
+
+---
+
+### 2. Number of Orders Per Date
+
+**Query:**
+```sql
+SELECT 
+    ORDERDATE,
+    COUNT(ORDERNUMBER) AS NO_OF_ORDERS
+FROM SAMPLE_SALES_DATA
+GROUP BY 1
+ORDER BY 2 DESC;
+```
+
+**Output (Top 20):**
+| ORDERDATE | NO_OF_ORDERS |
+|-----------|--------------|
+| 11/14/2003 | 38 |
+| 11/24/2004 | 35 |
+| 11/12/2003 | 34 |
+| 11/17/2004 | 32 |
+| 11/4/2004 | 29 |
+| 11/5/2003 | 28 |
+| 12/2/2003 | 28 |
+| 10/16/2004 | 28 |
+| 11/6/2003 | 27 |
+| 8/20/2004 | 27 |
+| 9/8/2004 | 26 |
+| 10/14/2004 | 26 |
+| 10/22/2004 | 26 |
+| 11/1/2004 | 26 |
+| 11/20/2003 | 25 |
+| 11/5/2004 | 25 |
+| 12/10/2004 | 24 |
+| 11/26/2003 | 22 |
+| 10/15/2004 | 22 |
+| 2/17/2005 | 22 |
+
+---
+
+### 3. Quantities Ordered Per Date
+
+**Query:**
+```sql
+SELECT 
+    ORDERDATE,
+    SUM(QUANTITYORDERED) AS ORDERS_QTY
+FROM SAMPLE_SALES_DATA
+GROUP BY 1
+ORDER BY 2 DESC;
+```
+
+**Output (Top 20):**
+| ORDERDATE | ORDERS_QTY |
+|-----------|------------|
+| 11/24/2004 | 1365 |
+| 11/14/2003 | 1306 |
+| 11/12/2003 | 1093 |
+| 11/17/2004 | 1058 |
+| 12/2/2003 | 1010 |
+| 10/16/2004 | 1002 |
+| 11/4/2004 | 1002 |
+| 11/6/2003 | 977 |
+| 8/20/2004 | 930 |
+| 11/1/2004 | 928 |
+| 9/8/2004 | 909 |
+| 11/20/2003 | 902 |
+| 11/5/2003 | 888 |
+| 11/5/2004 | 877 |
+| 12/10/2004 | 875 |
+| 10/22/2004 | 872 |
+| 10/14/2004 | 864 |
+| 11/26/2003 | 819 |
+| 11/25/2003 | 781 |
+| 2/17/2005 | 768 |
+
+---
+
+### 4. Top 5 Highest Paid Customers
+
+**Query:**
+```sql
+SELECT
+    CUSTOMERNAME,
+    ORDERDATE,
+    SUM(SALES) AS TOTAL_SALES
+FROM SAMPLE_SALES_DATA
+GROUP BY 1, 2
+ORDER BY 3 DESC
+LIMIT 5;
+```
+
+**Output:**
+| CUSTOMERNAME | ORDERDATE | TOTAL_SALES |
+|--------------|-----------|-------------|
+| Euro Shopping Channel | 11/24/2004 | 259657.14 |
+| Mini Gifts Distributors Ltd. | 11/14/2003 | 167130.88 |
+| Australian Collectors, Co. | 11/12/2003 | 82261.22 |
+| La Rochelle Gifts | 11/17/2004 | 80438.48 |
+| Muscle Machine Inc | 11/24/2004 | 75754.54 |
+
+---
+
+### 5. RFM Segmentation (Complete View)
 
 The RFM analysis is implemented using a multi-layered SQL view that:
 
@@ -95,6 +204,7 @@ The RFM analysis is implemented using a multi-layered SQL view that:
 2. **RFM Score**: Assigns 1-5 scores using NTILE function
 3. **RFM Combination**: Combines scores and creates customer segments
 
+**Query:**
 ```sql
 CREATE OR REPLACE VIEW RFM AS
 WITH SUMMARY_TABLE AS (
@@ -137,31 +247,106 @@ SELECT
         ELSE 'OTHERS'
     END AS CUSTOMER_SEGMENT
 FROM RFM_COMBINATION;
+
+SELECT * FROM RFM;
 ```
 
-### 3. Additional Analysis Queries
+**Complete Output (All 92 Customers):**
 
-**Orders Per Date:**
-```sql
-SELECT 
-    ORDERDATE,
-    COUNT(ORDERNUMBER) AS NO_OF_ORDERS
-FROM SAMPLE_SALES_DATA
-GROUP BY 1
-ORDER BY 2 DESC;
-```
-
-**Top Customers:**
-```sql
-SELECT
-    CUSTOMERNAME,
-    ORDERDATE,
-    SUM(SALES) AS TOTAL_SALES
-FROM SAMPLE_SALES_DATA
-GROUP BY 1, 2
-ORDER BY 3 DESC
-LIMIT 5;
-```
+| CUSTOMERNAME | RECENCY | FREQUENCY | MONETARY | RFM_SCORE | CUSTOMER_SEGMENT |
+|--------------|---------|-----------|----------|-----------|------------------|
+| Danish Wholesale Imports | 5 | 5 | 5 | 15 | CHAMPIONS |
+| Salzburg Collectables | 5 | 5 | 5 | 15 | CHAMPIONS |
+| Souveniers And Things Co. | 5 | 5 | 5 | 15 | CHAMPIONS |
+| The Sharp Gifts Warehouse | 5 | 5 | 5 | 15 | CHAMPIONS |
+| La Rochelle Gifts | 5 | 5 | 5 | 15 | CHAMPIONS |
+| Mini Gifts Distributors Ltd. | 5 | 5 | 5 | 15 | CHAMPIONS |
+| Euro Shopping Channel | 5 | 5 | 5 | 15 | CHAMPIONS |
+| Handji Gifts& Co | 5 | 5 | 4 | 14 | LOYAL_CUSTOMERS |
+| Tokyo Collectables, Ltd | 5 | 5 | 4 | 14 | LOYAL_CUSTOMERS |
+| Diecast Classics Inc. | 5 | 5 | 4 | 14 | LOYAL_CUSTOMERS |
+| Reims Collectables | 4 | 5 | 5 | 14 | LOYAL_CUSTOMERS |
+| Corporate Gift Ideas Co. | 4 | 5 | 5 | 14 | LOYAL_CUSTOMERS |
+| Anna's Decorations, Ltd | 4 | 5 | 5 | 14 | LOYAL_CUSTOMERS |
+| Dragon Souveniers, Ltd. | 4 | 5 | 5 | 14 | LOYAL_CUSTOMERS |
+| Gift Depot Inc. | 5 | 4 | 4 | 13 | LOYAL_CUSTOMERS |
+| UK Collectables, Ltd. | 5 | 4 | 4 | 13 | LOYAL_CUSTOMERS |
+| Muscle Machine Inc | 3 | 5 | 5 | 13 | LOYAL_CUSTOMERS |
+| Australian Collectors, Co. | 3 | 5 | 5 | 13 | LOYAL_CUSTOMERS |
+| Mini Caravy | 5 | 4 | 3 | 12 | LOYAL_CUSTOMERS |
+| Gifts4AllAges.com | 5 | 4 | 3 | 12 | LOYAL_CUSTOMERS |
+| Toys of Finland, Co. | 4 | 4 | 4 | 12 | LOYAL_CUSTOMERS |
+| Scandinavian Gift Ideas | 4 | 4 | 4 | 12 | LOYAL_CUSTOMERS |
+| L'ordine Souveniers | 5 | 2 | 5 | 12 | LOYAL_CUSTOMERS |
+| Quebec Home Shopping Network | 5 | 4 | 2 | 11 | POTENTIAL_LOYALISTS |
+| Tekni Collectables Inc. | 4 | 4 | 3 | 11 | POTENTIAL_LOYALISTS |
+| Auto Canal Petit | 4 | 4 | 3 | 11 | POTENTIAL_LOYALISTS |
+| FunGiftIdeas.com | 4 | 4 | 3 | 11 | POTENTIAL_LOYALISTS |
+| Oulu Toy Supplies, Inc. | 4 | 3 | 4 | 11 | POTENTIAL_LOYALISTS |
+| Toys4GrownUps.com | 4 | 3 | 4 | 11 | POTENTIAL_LOYALISTS |
+| Technics Stores Inc. | 3 | 4 | 4 | 11 | POTENTIAL_LOYALISTS |
+| AV Stores, Co. | 3 | 3 | 5 | 11 | POTENTIAL_LOYALISTS |
+| Land of Toys Inc. | 2 | 4 | 5 | 11 | POTENTIAL_LOYALISTS |
+| Royale Belge | 4 | 5 | 1 | 10 | POTENTIAL_LOYALISTS |
+| Alpha Cognac | 4 | 4 | 2 | 10 | POTENTIAL_LOYALISTS |
+| Volvo Model Replicas, Co | 3 | 5 | 2 | 10 | POTENTIAL_LOYALISTS |
+| Lyon Souveniers | 4 | 4 | 2 | 10 | POTENTIAL_LOYALISTS |
+| Collectables For Less Inc. | 4 | 3 | 3 | 10 | POTENTIAL_LOYALISTS |
+| Mini Creations Ltd. | 3 | 3 | 4 | 10 | POTENTIAL_LOYALISTS |
+| Suominen Souveniers | 3 | 3 | 4 | 10 | POTENTIAL_LOYALISTS |
+| Baane Mini Imports | 2 | 4 | 4 | 10 | POTENTIAL_LOYALISTS |
+| Mini Auto Werke | 4 | 4 | 1 | 9 | POTENTIAL_LOYALISTS |
+| Australian Gift Network, Co | 4 | 4 | 1 | 9 | POTENTIAL_LOYALISTS |
+| Petit Auto | 5 | 2 | 2 | 9 | POTENTIAL_LOYALISTS |
+| Signal Gift Stores | 3 | 3 | 3 | 9 | POTENTIAL_LOYALISTS |
+| Motor Mint Distributors Inc. | 3 | 3 | 3 | 9 | POTENTIAL_LOYALISTS |
+| Blauer See Auto, Co. | 2 | 4 | 3 | 9 | POTENTIAL_LOYALISTS |
+| Stylish Desk Decors, Co. | 3 | 3 | 3 | 9 | POTENTIAL_LOYALISTS |
+| La Corne D'abondance, Co. | 3 | 3 | 3 | 9 | POTENTIAL_LOYALISTS |
+| Rovelli Gifts | 2 | 2 | 5 | 9 | POTENTIAL_LOYALISTS |
+| Australian Collectables, Ltd | 5 | 2 | 1 | 8 | PROMISING_CUSTOMERS |
+| Mini Wheels Co. | 3 | 3 | 2 | 8 | PROMISING_CUSTOMERS |
+| Marseille Mini Autos | 3 | 3 | 2 | 8 | PROMISING_CUSTOMERS |
+| Classic Legends Inc. | 3 | 3 | 2 | 8 | PROMISING_CUSTOMERS |
+| Enaco Distributors | 3 | 3 | 2 | 8 | PROMISING_CUSTOMERS |
+| Cruz & Sons Co. | 2 | 3 | 3 | 8 | PROMISING_CUSTOMERS |
+| Marta's Replicas Co. | 2 | 2 | 4 | 8 | PROMISING_CUSTOMERS |
+| Corrida Auto Replicas, Ltd | 2 | 2 | 4 | 8 | PROMISING_CUSTOMERS |
+| Online Diecast Creations Co. | 2 | 2 | 4 | 8 | PROMISING_CUSTOMERS |
+| Saveley & Henriot, Co. | 1 | 2 | 5 | 8 | PROMISING_CUSTOMERS |
+| Boards & Toys Co. | 4 | 2 | 1 | 7 | PROMISING_CUSTOMERS |
+| Atelier graphique | 3 | 3 | 1 | 7 | PROMISING_CUSTOMERS |
+| Auto-Moto Classics Inc. | 3 | 3 | 1 | 7 | PROMISING_CUSTOMERS |
+| Gift Ideas Corp. | 3 | 3 | 1 | 7 | PROMISING_CUSTOMERS |
+| Mini Classics | 2 | 2 | 3 | 7 | PROMISING_CUSTOMERS |
+| Vitachrome Inc. | 2 | 2 | 3 | 7 | PROMISING_CUSTOMERS |
+| Toms Spezialitten, Ltd | 2 | 2 | 3 | 7 | PROMISING_CUSTOMERS |
+| Heintze Collectables | 2 | 2 | 3 | 7 | PROMISING_CUSTOMERS |
+| Herkku Gifts | 1 | 2 | 4 | 7 | PROMISING_CUSTOMERS |
+| Auto Assoc. & Cie. | 2 | 2 | 2 | 6 | PROMISING_CUSTOMERS |
+| Classic Gift Ideas, Inc | 2 | 2 | 2 | 6 | PROMISING_CUSTOMERS |
+| Canadian Gift Exchange Network | 2 | 2 | 2 | 6 | PROMISING_CUSTOMERS |
+| Vida Sport, Ltd | 1 | 1 | 4 | 6 | PROMISING_CUSTOMERS |
+| Iberia Gift Imports, Corp. | 2 | 2 | 1 | 5 | HIBERNATING |
+| Clover Collections, Co. | 2 | 2 | 1 | 5 | HIBERNATING |
+| giftsbymail.co.uk | 2 | 1 | 2 | 5 | HIBERNATING |
+| Collectable Mini Designs Co. | 1 | 1 | 3 | 5 | HIBERNATING |
+| Amica Models & Co. | 1 | 1 | 3 | 5 | HIBERNATING |
+| Microscale Inc. | 2 | 1 | 1 | 4 | HIBERNATING |
+| Osaka Souveniers Co. | 1 | 1 | 2 | 4 | HIBERNATING |
+| Daedalus Designs Imports | 1 | 1 | 2 | 4 | HIBERNATING |
+| Diecast Collectables | 1 | 1 | 2 | 4 | HIBERNATING |
+| Royal Canadian Collectables, Ltd. | 1 | 1 | 2 | 4 | HIBERNATING |
+| Norway Gifts By Mail, Co. | 1 | 1 | 2 | 4 | HIBERNATING |
+| Super Scale Inc. | 1 | 1 | 2 | 4 | HIBERNATING |
+| Bavarian Collectables Imports, Co. | 1 | 1 | 1 | 3 | LOST |
+| Double Decker Gift Stores, Ltd | 1 | 1 | 1 | 3 | LOST |
+| Cambridge Collectables Co. | 1 | 1 | 1 | 3 | LOST |
+| West Coast Collectables Co. | 1 | 1 | 1 | 3 | LOST |
+| Men 'R' US Retailers, Ltd. | 1 | 1 | 1 | 3 | LOST |
+| CAF Imports | 1 | 1 | 1 | 3 | LOST |
+| Signal Collectibles Ltd. | 1 | 1 | 1 | 3 | LOST |
+| Online Mini Collectables | 1 | 1 | 1 | 3 | LOST |
 
 ## 📁 Repository Structure
 
