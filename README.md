@@ -431,10 +431,4 @@ RFM-SEGMENTATION/
 
 For questions or suggestions, feel free to reach out!
 
----
 
-⭐ **If you found this project helpful, please give it a star!** ⭐
-
----
-
-**License**: This project is open source and available under the MIT License.
